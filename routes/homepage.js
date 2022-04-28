@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var productHelper = require('../helpers/product-helpers');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-    
- let products = [
+
+  let products_hm = [
     {
       name: "Iphone 11",
       category: "Mobile",
@@ -79,8 +80,19 @@ router.get('/', function(req, res) {
       },
   ];
 
+ //res.render('homepage',{products_hm});
 
-  res.render('homepage',{products});
+//user page data showing as list -data tacking from database
+
+productHelper.getAllProducts().then((products)=>{
+  console.log(products);
+  res.render('homepage',{admin:true,products,products_hm})
+}) 
+
+
+
+
+
 });
 
 module.exports = router;

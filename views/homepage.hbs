@@ -3,7 +3,7 @@
 <section class="hero_section_2">
     <div class="container mt-5">
         <div class="row">
-            {{#each products}}
+            {{#each products_hm}}
             <div class="col col-md-6 col-lg-4 col-xl-3">
                 <div class="card mt-4 ">
                     <img src="{{this.images}}" class="card-img-top" alt="...">
@@ -20,3 +20,31 @@
     </div>
 </section>
 
+
+
+
+
+
+{{!-- =================================== list =============================== --}}
+
+
+<section class="Product_List " style="margin-top: 15vh;">
+    <div class="container">
+        {{#each products}}
+        
+            <div class="list-group ">
+       
+        <a href=""
+            class="list-group-item list-group-item-action flex-column align-items-start active text-black bg-light border border-grey">
+            <div class="d-flex w-100 justify-content-between">
+                <img src="{{this.images}}" alt="" style="width: 100px;height: 100px;">
+                <h4 class="mb-1">{{this.fname}}</h4>
+                <small class="fs-5">&#8377;{{this.fprice}}/-</small>
+            </div>
+            <p class="mb-1">{{this.fDescription}}</small>
+        </a>
+
+    </div>
+    {{/each}}
+    </div>
+</section>
