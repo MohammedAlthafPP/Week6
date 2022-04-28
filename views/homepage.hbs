@@ -1,0 +1,22 @@
+{{!-- ===================================================== card ============================================= --}}
+
+<section class="hero_section_2">
+    <div class="container mt-5">
+        <div class="row">
+            {{#each products}}
+            <div class="col col-md-6 col-lg-4 col-xl-3">
+                <div class="card mt-4 ">
+                    <img src="{{this.images}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title">{{this.name}}</h4>
+                        <h5 class="card-title">Price : &#8377;{{this.Price}}/-</h5>
+                        <p class="card-text">{{this.Description}}</p>
+                        <a href="#" class="btn btn-primary">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+

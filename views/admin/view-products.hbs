@@ -1,0 +1,35 @@
+
+
+{{!-- ======================================= Table =================================== --}}
+
+<section class="Product_Table" style="">
+    <div class="container">
+        <div class="">
+        <a href="/admin/add-product" class="btn btn-success mb-4 mt-4 ml-auto">Add Products</a>
+        </div>
+            <table class="table table-hover table-light table-bordered">
+        
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Images</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+
+                <th scope="row">{{this.name}}</th>
+                <td>{{this.category}}</td>
+                <td>{{this.Description}}</td>
+                <td>&#8377;{{this.Price}}/-</td>
+                <td><img src="{{this.images}}" alt="" style="width:50px; height: 50px;"></td>
+            </tr>
+            {{/each}}
+        </tbody>
+        </table>
+    </div>
+</section>
