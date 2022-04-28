@@ -86,7 +86,7 @@ router.get('/', function(req, res) {
 
 productHelper.getAllProducts().then((products)=>{
   console.log(products);
-  res.render('homepage',{admin:true,products,products_hm})
+  res.render('homepage',{products,products_hm})
 }) 
 
 
