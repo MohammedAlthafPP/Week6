@@ -6,10 +6,17 @@ const userHelper = require('../helpers/user-helpers')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  if(req.session.loggedIn){
+    res.redirect('/homepage')
+  } else{
+    res.render('index',{LoginErr:req.session.LoginErr})
+    req.session.LoginErr=false
+  }
+  
 });
 
 router.get('/signup',(req,res)=>{
+  
   res.render('signup')
 })
 
@@ -34,6 +41,7 @@ router.post('/login',(req,res)=>{
       req.session.user=response.user
       res.redirect("/homepage")
     } else{
+      req.session.LoginErr="Invalid Username or Password"  //passing error to intex.hbs
       res.redirect('/')
     }
   })
@@ -46,4 +54,10 @@ router.get('/logout',(req,res)=>{
   res.redirect('/')
 })
 
+
+router.get('/cart',(req,res)=>{
+
+  
+  res.render('cart')
+})
 module.exports = router;
