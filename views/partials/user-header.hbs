@@ -49,11 +49,15 @@
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
               data-bs-toggle="dropdown" aria-expanded="false">
+              {{#if user}}
+              {{user.fname}}
+              {{else}}
               Account
+              {{/if}}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" href="#">Account</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
 
             </ul>
           </div>

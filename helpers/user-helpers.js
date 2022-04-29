@@ -62,6 +62,7 @@ const { response } = require("../app");
 const { status } = require("express/lib/response");
 
 module.exports = {
+   //========================== Signup and password encoding =================
     doSignup: (userData) => {
         return new Promise(async (resolve, reject) => {
             userData.fpassword = await bcrypt.hash(userData.fpassword, 10);
@@ -72,6 +73,7 @@ module.exports = {
             resolve(response);
         });
     },
+    //======================== login method =============
     doLogin: (userData) => {
         return new Promise(async (resolve, reject) => {
             let loginStatus = false;

@@ -4,7 +4,8 @@ var productHelper = require('../helpers/product-helpers');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-
+let user=req.session.user;
+console.log(user);
   let products_hm = [
     {
       name: "Iphone 11",
@@ -85,8 +86,8 @@ router.get('/', function(req, res) {
 //user page data showing as list -data tacking from database
 
 productHelper.getAllProducts().then((products)=>{
-  console.log(products);
-  res.render('homepage',{products,products_hm})
+  //console.log(products);
+  res.render('homepage',{products,products_hm,user})
 }) 
 
 

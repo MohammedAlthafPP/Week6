@@ -30,6 +30,8 @@ res.redirect('/homepage')
 router.post('/login',(req,res)=>{
   userHelper.doLogin(req.body).then((response)=>{
     if(response.status){
+      req.session.loggedIn=true
+      req.session.user=response.user
       res.redirect("/homepage")
     } else{
       res.redirect('/')
@@ -39,6 +41,9 @@ router.post('/login',(req,res)=>{
   
 })
 
-
+router.get('/logout',(req,res)=>{
+  req.session.destroy()
+  res.redirect('/')
+})
 
 module.exports = router;
