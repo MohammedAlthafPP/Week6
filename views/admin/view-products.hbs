@@ -9,13 +9,14 @@
         </div>
             <table class="table table-hover table-light table-bordered">
         
-        <thead>
+        <thead class="text-center">
             <tr>
                 <th scope="col">Item</th>
                 <th scope="col">Category</th>
                 <th scope="col">Description</th>
                 <th scope="col">Price</th>
                 <th scope="col">Images</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,10 @@
                 <td>{{this.fDescription}}</td>
                 <td>&#8377;{{this.fprice}}/-</td>
                 <td><img src="{{this.images}}" alt="" style="width:50px; height: 50px;"></td>
+                <td>
+                    <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
+                    <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to Remove {{this.fname}}?');")">Delete</a>
+                </td>
             </tr>
             {{/each}}
         </tbody>

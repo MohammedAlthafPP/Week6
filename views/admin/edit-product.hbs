@@ -1,3 +1,6 @@
+{{!-- edit-product.hbs --}}
+
+
 
 
 
@@ -5,13 +8,13 @@
 
 <section class="vh-100" style="background-color: #2779e2;">
    
-    <form action="/admin/add-product" method="post" enctype="multipart/form-data">
+    <form action="/admin/edit-product/{{product._id}}" method="post" enctype="multipart/form-data">
 
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-9">
 
-        <h1 class="text-white mb-4">Add product</h1>
+        <h1 class="text-white mb-4">Edit product</h1>
 
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
@@ -24,7 +27,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" class="form-control form-control-lg" name="fname"/>
+                <input type="text" class="form-control form-control-lg" name="fname" value="{{product.fname}}"/>
 
               </div>
             </div>
@@ -39,7 +42,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text"  class="form-control form-control-lg" placeholder="mobiles,clothing,home appliances etc..." name="fcategoty"/>
+                <input type="text"  class="form-control form-control-lg" placeholder="mobiles,clothing,home appliances etc..." name="fcategoty" value="{{product.fcategoty}}"/>
 
               </div>
             </div>
@@ -54,8 +57,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <textarea class="form-control" rows="3" placeholder="product Details" name="fDescription"></textarea>
-
+                 <input type="text"  class="form-control form-control-lg" placeholder="product Details"  name="fDescription" value="{{product.fDescription}}"/>
               </div>
             </div>
 
@@ -70,7 +72,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text"  class="form-control form-control-lg" placeholder=" eg :- 199" name="fprice"/>
+                <input type="text"  class="form-control form-control-lg" placeholder=" eg :- 199" name="fprice" value="{{product.fprice}}"/>
 
               </div>
             </div>
@@ -95,7 +97,7 @@
             <hr class="mx-n3">
 
             <div class="px-5 py-4">
-              <button type="submit" class="btn btn-primary btn-lg">ADD</button>
+              <button type="submit" class="btn btn-primary btn-lg">Update</button>
               
              <a href="/admin" class="btn btn-success btn-lg ms-3">Back</a>
             </div>

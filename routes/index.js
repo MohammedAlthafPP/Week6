@@ -4,6 +4,15 @@ const { response } = require('../app');
 var router = express.Router();
 const userHelper = require('../helpers/user-helpers')
 
+//middleware to check verify user login or not
+const verifyLogin=(req,res,next)=>{
+  if(req.session.loggedIn){
+    next()
+  }else{
+    res.redirect('/')
+  }
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.session.loggedIn){
@@ -55,9 +64,9 @@ router.get('/logout',(req,res)=>{
 })
 
 
-router.get('/cart',(req,res)=>{
+router.get('/cart',verifyLogin,(req,res)=>{
 
-  
+
   res.render('cart')
 })
 module.exports = router;

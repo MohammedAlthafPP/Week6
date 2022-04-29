@@ -4,8 +4,12 @@ var productHelper = require('../helpers/product-helpers');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
+  if(req.session.loggedIn){
+
+  
 let user=req.session.user;
 console.log(user);
+
   let products_hm = [
     {
       name: "Iphone 11",
@@ -91,7 +95,9 @@ productHelper.getAllProducts().then((products)=>{
 }) 
 
 
-
+  }else{
+    res.redirect('/')
+  }
 
 
 });
