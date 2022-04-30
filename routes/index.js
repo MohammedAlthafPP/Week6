@@ -25,6 +25,7 @@ const verifyAdmin=(req,res,next)=>{
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  res.header('Cache-control','no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0,pre-check=0');
   if(req.session.loggedIn){
     res.redirect('/homepage')
   } else{
@@ -53,6 +54,7 @@ router.post('/registration',(req,res)=>{
       req.session.loggedIn=true
       req.session.user=req.body
      res.redirect('/homepage')
+     
      console.log(req.body);
       
     }) 
@@ -75,10 +77,10 @@ router.post('/login',(req,res)=>{
 })
 
 router.get('/logout',(req,res)=>{
+  res.header('Cache-control','no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0,pre-check=0');
   req.session.destroy()
   res.redirect('/')
 })
-
 
 router.get('/cart',verifyLogin,(req,res)=>{
 
@@ -93,12 +95,12 @@ router.get('/admin-login',(req,res)=>{
 })
 
 router.post('/admin-panel',(req,res)=>{
-  console.log(req.body);
+ // console.log(req.body);
   userHelper.doLoginAdmin(req.body).then((response)=>{
     if(response.status){
       req.session.adminloggedIn=true
-      req.session.admin=response.user
-     
+      req.session.admin=response.admin
+     console.log(req.session.admin);
       res.redirect("/admin")
     } else{
       req.session.adminLoginErr="Invalid Username or Password"  //passing error to intex.hbs
@@ -118,6 +120,7 @@ router.get('/admin-signup',verifyAdmin,(req,res)=>{
 
 
 router.post('/abc',(req,res)=>{
+ 
   console.log(req.body);
   userHelper.doSignupAdmin(req.body).then((response)=>{
     // console.log("dosingup========="+userData);

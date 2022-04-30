@@ -8,14 +8,17 @@ var productHelper = require('../helpers/product-helpers');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+ 
 if( req.session.adminloggedIn){
 
-
+var admin= req.session.admin
 
   //tacking product from database and displaying as table,passing databse to admin page
     productHelper.getAllProducts().then((products)=>{
       console.log(products);
-      res.render('admin/view-products',{admin:true,products})
+      res.header('Cache-control','no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0,pre-check=0');
+      res.render('admin/view-products',{admin,products})
+    
     }) 
   } else{
     res.redirect('/')
