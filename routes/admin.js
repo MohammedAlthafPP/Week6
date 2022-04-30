@@ -8,12 +8,18 @@ var productHelper = require('../helpers/product-helpers');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+if( req.session.adminloggedIn){
+
+
+
   //tacking product from database and displaying as table,passing databse to admin page
     productHelper.getAllProducts().then((products)=>{
       console.log(products);
       res.render('admin/view-products',{admin:true,products})
     }) 
-
+  } else{
+    res.redirect('/')
+  }
 });
 
 router.get('/add-product',function(req,res){

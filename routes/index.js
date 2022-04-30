@@ -1,4 +1,5 @@
 var express = require('express');
+const { redirect } = require('express/lib/response');
 const res = require('express/lib/response');
 const { response } = require('../app');
 var router = express.Router();
@@ -7,6 +8,15 @@ const userHelper = require('../helpers/user-helpers')
 //middleware to check verify user login or not
 const verifyLogin=(req,res,next)=>{
   if(req.session.loggedIn){
+    next()
+  }else{
+    res.redirect('/')
+  }
+}
+
+//middleware to check verify Admin login or not
+const verifyAdmin=(req,res,next)=>{
+  if( req.session.adminloggedIn){
     next()
   }else{
     res.redirect('/')
@@ -96,8 +106,13 @@ router.post('/admin-panel',(req,res)=>{
   })
 })
 
-router.get('/admin-signup',(req,res)=>{
+//admin signup
+router.get('/admin-signup',verifyAdmin,(req,res)=>{
+
+ 
   res.render('admin-signup',{layout:null})
+  
+  
 })
 
 
@@ -105,7 +120,7 @@ router.post('/abc',(req,res)=>{
   console.log(req.body);
   userHelper.doSignupAdmin(req.body).then((response)=>{
     // console.log("dosingup========="+userData);
-     req.session.adminloggedIn=true
+     req.session.adminSignUp=true
      req.session.admin=req.body
     res.redirect('/admin')
     console.log(req.body);
