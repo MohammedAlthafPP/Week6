@@ -10,7 +10,7 @@ module.exports={
 
     addProduct:(product,callback)=>{
         console.log(product);
-        db.get().collection(collection.PRODUCT_COLLECTION).insertOne(product).then((data)=>{
+        db.get().collection(collection.USER_COLLECTION).insertOne(product).then((data)=>{
             console.log(data);
             // callback(data.ops[0]._id);
             callback(true)
@@ -19,7 +19,7 @@ module.exports={
 
 getAllProducts:()=>{
     return new Promise(async(resolve,reject)=>{
-        let products=await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
+        let products=await db.get().collection(collection.USER_COLLECTION).find().toArray()
         resolve(products)
     })
 },
@@ -35,7 +35,7 @@ getAllProducts:()=>{
 
 deleteProducts:(productId)=>{
     return new Promise((resolve,reject)=>{
-        db.get().collection(collections.PRODUCT_COLLECTION).remove({_id:objectId(productId)}).then((response)=>{
+        db.get().collection(collections.USER_COLLECTION).remove({_id:objectId(productId)}).then((response)=>{
             resolve(response)
         })
         
@@ -44,7 +44,7 @@ deleteProducts:(productId)=>{
 
 getProductDetails:(productId)=>{
     return new Promise((resolve,reject)=>{
-        db.get().collection(collections.PRODUCT_COLLECTION).findOne({_id:objectId(productId)}).then((product)=>{
+        db.get().collection(collections.USER_COLLECTION).findOne({_id:objectId(productId)}).then((product)=>{
             resolve(product)
         })
     })
@@ -52,13 +52,15 @@ getProductDetails:(productId)=>{
 
 updateproduct:(productId,productDetails)=>{
     return new Promise((resolve,reject)=>{
-        db.get().collection(collections.PRODUCT_COLLECTION)
+        db.get().collection(collections.USER_COLLECTION)
         .updateOne({_id:objectId(productId)},{
             $set:{
                 fname:productDetails.fname,
-                fcategoty:productDetails.fcategoty,
-                fDescription:productDetails.fDescription,
-                fprice:productDetails.fprice
+                Lname:productDetails.Lname,
+                DOB:productDetails.DOB,
+                inlineRadioOptions:productDetails.inlineRadioOptions,
+                fEmail:productDetails.fEmail,
+                fpassword:productDetails.fpassword
             }
             }).then((response)=>{
                 resolve()

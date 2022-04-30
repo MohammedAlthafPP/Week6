@@ -6,8 +6,8 @@ var productHelper = require('../helpers/product-helpers');
 router.get('/', function(req, res) {
   if(req.session.loggedIn){
 
-  
-let user=req.session.user;
+var user= req.session.user;
+var user=req.session.user;
 console.log(user);
 
   let products_hm = [
@@ -15,7 +15,7 @@ console.log(user);
       name: "Iphone 11",
       category: "Mobile",
       Description:
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,",
+       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,",
       images:
         "https://imageio.forbes.com/specials-images/imageserve/6154f2bcfa303d3c7e6e35e9/Apple--iPhone--new-iPhone--new-iPhone-release--iPhone-14--iPhone-14-Pro--iPhone-13-/960x0.jpg?fit=bounds&format=jpg&width=960",
       Price: 86900,

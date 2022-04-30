@@ -131,4 +131,10 @@ router.post('/edit-product/:id',(req,res)=>{
   })
 })
 
+
+router.get('/user-Details',(req,res)=>{
+  res.render('admin/users-details')
+})
+
+
 module.exports = router;

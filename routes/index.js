@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
   if(req.session.loggedIn){
     res.redirect('/homepage')
   } else{
-    res.render('index',{LoginErr:req.session.LoginErr})
+    res.render('index',{LoginErr:req.session.LoginErr,layout:false})
     req.session.LoginErr=false
   }
   
@@ -26,21 +26,26 @@ router.get('/', function(req, res, next) {
 
 router.get('/signup',(req,res)=>{
   
-  res.render('signup')
+  res.render('signup',{layout:false})
 })
 
 //signup page data inserting to database
 router.post('/registration',(req,res)=>{
  
-userHelper.doSignup(req.body).then((response)=>{
-  console.log(response);
+// userHelper.doSignup(req.body).then((response)=>{
+//   //console.log(req.body);
+//   //console.log("###########"+response);
+//   res.redirect('/homepage')
+// })
 
-})
-res.redirect('/homepage')
-//  userHelper.doSignup(req.body).then((userData)=>{
-//       console.log("dosingup========="+userData);
-//      // res.render('homepage')
-//     }) 
+ userHelper.doSignup(req.body).then((response)=>{
+     // console.log("dosingup========="+userData);
+      req.session.loggedIn=true
+      req.session.user=req.body
+     res.redirect('/homepage')
+     console.log(req.body);
+      
+    }) 
 });
 
 router.post('/login',(req,res)=>{
@@ -48,6 +53,7 @@ router.post('/login',(req,res)=>{
     if(response.status){
       req.session.loggedIn=true
       req.session.user=response.user
+     
       res.redirect("/homepage")
     } else{
       req.session.LoginErr="Invalid Username or Password"  //passing error to intex.hbs

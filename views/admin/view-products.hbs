@@ -11,12 +11,14 @@
         
         <thead class="text-center">
             <tr>
-                <th scope="col">Item</th>
-                <th scope="col">Category</th>
-                <th scope="col">Description</th>
-                <th scope="col">Price</th>
-                <th scope="col">Images</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Fist Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+              
+                <th scope="col">Options</th>
             </tr>
         </thead>
         <tbody>
@@ -24,13 +26,14 @@
             <tr>
 
                 <th scope="row">{{this.fname}}</th>
-                <td>{{this.fcategoty}}</td>
-                <td>{{this.fDescription}}</td>
-                <td>&#8377;{{this.fprice}}/-</td>
-                <td><img src="{{this.images}}" alt="" style="width:50px; height: 50px;"></td>
-                <td>
-                    <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
-                    <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to Remove {{this.fname}}?');")">Delete</a>
+                <td>{{this.Lname}}</td>
+                <td>{{this.DOB}}</td>
+                <td>{{this.inlineRadioOptions}}</td>
+                <td>{{this.fEmail}}</td>
+                <td>{{this.fpnum}}</td>
+                
+           <td>   <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
+                    <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to Remove {{this.fname}}?');")>Delete</a>
                 </td>
             </tr>
             {{/each}}

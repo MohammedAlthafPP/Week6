@@ -60,6 +60,7 @@ const { reject } = require("bcrypt/promises");
 const async = require("hbs/lib/async");
 const { response } = require("../app");
 const { status } = require("express/lib/response");
+const collections = require("../config/collections");
 
 module.exports = {
    //========================== Signup and password encoding =================
@@ -67,7 +68,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             userData.fpassword = await bcrypt.hash(userData.fpassword, 10);
             db.get()
-                .collection(collection.USER_COLLECTION)
+                .collection(collections.USER_COLLECTION)
                 .insertOne(userData)
                 .then(response);
             resolve(response);
@@ -80,8 +81,9 @@ module.exports = {
             let response = {};
             let user = await db
                 .get()
-                .collection(collection.USER_COLLECTION)
+                .collection(collections.USER_COLLECTION)
                 .findOne({ fEmail: userData.userName });
+                
             if (user) {
 
                 bcrypt.compare(userData.password, user.fpassword).then((status) => {
