@@ -88,7 +88,8 @@ router.get('/cart',verifyLogin,(req,res)=>{
 
 
 router.get('/admin-login',(req,res)=>{
-  res.render('admin-login',{layout:null})
+  res.render('admin-login',{layout:null,adminLogErr:req.session.adminLoginErr})
+  req.session.adminLoginErr=false
 })
 
 router.post('/admin-panel',(req,res)=>{
@@ -100,7 +101,7 @@ router.post('/admin-panel',(req,res)=>{
      
       res.redirect("/admin")
     } else{
-      req.session.LoginErr="Invalid Username or Password"  //passing error to intex.hbs
+      req.session.adminLoginErr="Invalid Username or Password"  //passing error to intex.hbs
       res.redirect('/admin-login')
     }
   })

@@ -6,6 +6,7 @@
       <div class="col-md-6 offset-md-3">
         <h2 class="text-center text-dark mt-5">Admin Login</h2>
         <div class="text-center mb-5 text-dark">Log into Admin Panel</div>
+        
         <div class="card my-5">
 
           <form class="card-body cardbody-color p-lg-5" action="/admin-panel" method="post" role="form">
@@ -14,7 +15,9 @@
               <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                 width="200px" alt="profile">
             </div>
-
+{{#if adminLogErr}}
+        <h5 class="error text-danger text-center">{{adminLogErr}}</h5>
+        {{/if}}
             <div class="mb-3">
               <input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
                 placeholder="User Name" name="Username">
