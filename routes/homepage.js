@@ -91,7 +91,8 @@ console.log(user);
 
 productHelper.getAllProducts().then((products)=>{
   //console.log(products);
-  res.render('homepage',{products,products_hm,user})
+  // res.render('homepage',{products,products_hm,user})
+  res.render('homepage',{products_hm,user})
 }) 
 
 

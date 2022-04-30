@@ -103,4 +103,49 @@ module.exports = {
             }
         });
     },
-};
+ //========================== Admin Signup and password encoding =================
+ doSignupAdmin: (adminData) => {
+    return new Promise(async (resolve, reject) => {
+        adminData.password = await bcrypt.hash(adminData.password, 10);
+        db.get()
+            .collection(collections.ADMIN_COLLECTION)
+            .insertOne(adminData)
+            .then(response);
+        resolve(response);
+    });
+},
+ 
+//========================Admin login method =============
+doLoginAdmin: (adminData) => {
+    return new Promise(async (resolve, reject) => {
+        let loginStatus = false;
+        let response = {};
+        let admin = await db
+            .get()
+            .collection(collections.ADMIN_COLLECTION)
+            .findOne({ Username: adminData.Username });
+            
+        if (admin) {
+
+            bcrypt.compare(adminData.password, admin.password).then((status) => {
+                if (status) {
+                    console.log("$$$$$$$$$  login success $$$$$$$$$$$");
+                    response.admin = admin
+                    response.status = true
+                    resolve(response)
+                } else {
+                    console.log("*********** login failed ***************");
+                    resolve({ status: false })
+                }
+            });
+        } else {
+            console.log('%%%%%%%%%%%%%%%%%%% Access Prohibited %%%%%%%%%%%%%%%%')
+            resolve({ status: false })
+        }
+    });
+
+
+
+
+}
+}

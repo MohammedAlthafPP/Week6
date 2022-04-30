@@ -75,4 +75,45 @@ router.get('/cart',verifyLogin,(req,res)=>{
 
   res.render('cart')
 })
+
+
+router.get('/admin-login',(req,res)=>{
+  res.render('admin-login',{layout:null})
+})
+
+router.post('/admin-panel',(req,res)=>{
+  console.log(req.body);
+  userHelper.doLoginAdmin(req.body).then((response)=>{
+    if(response.status){
+      req.session.adminloggedIn=true
+      req.session.admin=response.user
+     
+      res.redirect("/admin")
+    } else{
+      req.session.LoginErr="Invalid Username or Password"  //passing error to intex.hbs
+      res.redirect('/admin-login')
+    }
+  })
+})
+
+router.get('/admin-signup',(req,res)=>{
+  res.render('admin-signup',{layout:null})
+})
+
+
+router.post('/abc',(req,res)=>{
+  console.log(req.body);
+  userHelper.doSignupAdmin(req.body).then((response)=>{
+    // console.log("dosingup========="+userData);
+     req.session.adminloggedIn=true
+     req.session.admin=req.body
+    res.redirect('/admin')
+    console.log(req.body);
+     
+   })
+})
+
+
+
+
 module.exports = router;
